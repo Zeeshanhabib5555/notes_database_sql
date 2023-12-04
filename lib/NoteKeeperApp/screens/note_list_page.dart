@@ -41,7 +41,7 @@ class NoteListState extends State<NoteList> {
           navigateToDetail(Note('', '', 2, ""), "Add Note",'save');
         },
         tooltip: "Add Note",
-        child: Icon(Icons.add,size: 40,color: Colors.white),
+        child: Icon(Icons.add,size: 30,color: Colors.white),
       ),
     );
   }
