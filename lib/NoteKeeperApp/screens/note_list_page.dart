@@ -30,16 +30,18 @@ class NoteListState extends State<NoteList> {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text("My Notes"),
+        backgroundColor: Colors.teal,
+        title: Center(child: Text("My Notes")),
       ),
       body: getNoteListView(),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.teal,
         onPressed: () {
           debugPrint("FAB clicked");
           navigateToDetail(Note('', '', 2, ""), "Add Note",'save');
         },
         tooltip: "Add Note",
-        child: Icon(Icons.add),
+        child: Icon(Icons.add,size: 40,color: Colors.white),
       ),
     );
   }

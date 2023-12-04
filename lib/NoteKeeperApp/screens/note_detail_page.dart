@@ -51,7 +51,8 @@ class NoteDetailState extends State<NoteDetail> {
         },
         child: Scaffold(
           appBar: AppBar(
-            title: Text(appBarTitle),
+            backgroundColor: Colors.teal,
+            title: Center(child: Text(appBarTitle)),
             leading: IconButton(
                 icon: const Icon(Icons.arrow_back),
                 onPressed: () {
@@ -60,25 +61,33 @@ class NoteDetailState extends State<NoteDetail> {
                 }),
           ),
           body: Padding(
-            padding: const EdgeInsets.only(top: 15.0, left: 10.0, right: 10.0),
+            padding: const EdgeInsets.only(top: 20.0, left: 10.0, right: 10.0),
             child: ListView(
               children: <Widget>[
                 // First element
-                ListTile(
-                  title: DropdownButton(
-                      items: _priorities.map((String dropDownStringItem) {
-                        return DropdownMenuItem<String>(
-                          value: dropDownStringItem,
-                          child: Text(dropDownStringItem),
-                        );
-                      }).toList(),
-                      value: getPriorityAsString(note.priority),
-                      onChanged: (valueSelectedByUser) {
-                        setState(() {
-                          debugPrint('User selected $valueSelectedByUser');
-                          updatePriorityAsInt(valueSelectedByUser!);
-                        });
-                      }),
+                Container(
+                  height: 60,
+                  // width: 60,
+                  decoration: BoxDecoration(
+                    color: Color(0xFF26A69A),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: ListTile(
+                    title: DropdownButton(
+                        items: _priorities.map((String dropDownStringItem) {
+                          return DropdownMenuItem<String>(
+                            value: dropDownStringItem,
+                            child: Text(dropDownStringItem,style: TextStyle(fontSize: 20),),
+                          );
+                        }).toList(),
+                        value: getPriorityAsString(note.priority),
+                        onChanged: (valueSelectedByUser) {
+                          setState(() {
+                            debugPrint('User selected $valueSelectedByUser');
+                            updatePriorityAsInt(valueSelectedByUser!);
+                          });
+                        }),
+                  ),
                 ),
 
                 // Second Element
@@ -114,17 +123,20 @@ class NoteDetailState extends State<NoteDetail> {
                 ),
 
                 // Fourth Element
-                Padding(
-                  padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
+                 Padding(
+                  padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
                   child: Row(
                     children: <Widget>[
                       Expanded(
                         child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStatePropertyAll(Color(0xFF4DB6AC)),
+                          ),
                           // color: Theme.of(context).primaryColorDark,
                           // textColor: Theme.of(context).primaryColorLight,
                           child:  Text(
                             widget.buttonText,
-                            textScaleFactor: 1.5,
+                            textScaleFactor: 1.5,style: TextStyle(color: Colors.black),
                           ),
                           onPressed: () {
                             setState(() {
@@ -139,9 +151,13 @@ class NoteDetailState extends State<NoteDetail> {
                       ),
                       Expanded(
                         child: ElevatedButton(
-                          child: const Text(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStatePropertyAll(Colors.redAccent),
+                          ),
+                          child: Text(
                             'Delete',
                             textScaleFactor: 1.5,
+                            style: TextStyle(color: Colors.black),
                           ),
                           onPressed: () {
                             setState(() {
@@ -245,6 +261,7 @@ class NoteDetailState extends State<NoteDetail> {
     AlertDialog alertDialog = AlertDialog(
       title: Text(title),
       content: Text(message),
+      backgroundColor: Color(0xFFB2DFDB),
     );
     showDialog(context: context, builder: (_) => alertDialog);
   }
